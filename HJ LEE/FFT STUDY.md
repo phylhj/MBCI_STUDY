@@ -1,4 +1,4 @@
-#Discrete Signal Fourier Transform
+# Discrete Signal Fourier Transform
 
 NumPy에서는 numpy.fft에서 Matlab과 거의 동일한 형식으로 DFT를 지원,
 주로 사용하는 함수는 fft(x), ifft(x), fftfreq(n), fftshift(x) 등
@@ -9,7 +9,7 @@ FFT의 정의는 Matlab과 동일하다. 다만 인덱스가 0부터라는 점�
 forward Fourier Transform X = fft(x)*dt
 
 
-##sample 1 : DFT 주파수 분석 예시
+## sample 1 : DFT 주파수 분석 예시
 https://wikidocs.net/14635
 
 60 Hz 와 120 Hz의 사인 곡선이 중첩된 신호
@@ -18,7 +18,7 @@ x(t)=0.7sin(120πt)+sin(240πt)
 
 샘플링 주파수는 10kHz이고 200000개의 데이터로 수정해서 진행
 
-###code
+### code
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -66,10 +66,10 @@ plt.tight_layout(rect=(0,0,2,2))
 
 
 
-##sample 2 : python EEG FFT sample 
+## sample 2 : python EEG FFT sample 
 https://dsp.stackexchange.com/questions/45345/how-to-correctly-compute-the-eeg-frequency-bands-with-python
 
-###code
+### code
 
 import numpy as np
 
