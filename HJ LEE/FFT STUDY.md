@@ -1,4 +1,5 @@
-#python EEG FFT 검색, stackexchange 발췌
+# python EEG FFT 검색, stackexchange 발췌
+
 https://dsp.stackexchange.com/questions/45345/how-to-correctly-compute-the-eeg-frequency-bands-with-python
 
 # python code
