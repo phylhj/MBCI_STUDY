@@ -104,3 +104,33 @@ df['val'] = [eeg_band_fft[band] for band in eeg_bands]
 ax = df.plot.bar(x='band', y='val', legend=False)
 ax.set_xlabel("EEG band")
 ax.set_ylabel("Mean band Amplitude")
+
+
+
+
+# Computing the power spectral density
+https://raphaelvallat.com/bandpower.html
+raw EEG data와 예제 sample code 있음
+
+In order to compute the average bandpower in the delta band, we first need to compute an estimate of the power spectral density. 
+The most widely-used method to do that is the "Welch's periodogram", 
+which consists in averaging consecutive Fourier transform of small windows of the signal, with or without overlapping.
+
+The Welch's method improves the accuracy of the classic periodogram. 
+The reason is simple: EEG data are always time-varying, meaning that if you look at a 30 seconds of EEG data, 
+it is very (very) unlikely that the signal will looks like a perfect sum of pure sines. 
+
+Rather, the spectral content of the EEG changes over time, constantly modified by the neuronal activity at play under the scalp. 
+Problem is, to return a true spectral estimate, a classic periodogram requires the spectral content of the signal to be stationnary (i.e. time-unvarying) over the time period considered. 
+
+Because it is never the case, the periodogram is generally biased and contains way too much variance (see the end of this tutorial). 
+By averaging the periodograms obtained over short segments of the windows, the Welch's method allows to drastically reduce this variance. 
+This comes at the cost, however, of a lower frequency resolution. Indeed, the frequency resolution is defined by:
+
+  Fres=Fs/N=Fs/Fst=1/t
+
+where Fs is the sampling frequency of the signal, N the total number of samples and t the duration, in seconds, of the signal. In other words, if we were to use the full length of our data (30 seconds), our final frequency resolution would be 
+1/30 = 0.033 Hz, which is 30 frequency bins per Hertz. By using a 4-second sliding window, we reduce this frequency resolution to 4 frequency bins per Hertz, i.e. each step represents 0.25 Hz.
+
+How do we define the optimal window duration then? A commonly used approach is to take a window sufficiently long to encompasses at least two full cycles of the lowest frequency of interest. In our case, our lowest frequency of interest is 0.5 Hz so we will choose a window of 
+2/0.5=4 seconds.
