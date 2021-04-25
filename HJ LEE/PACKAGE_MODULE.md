@@ -6,6 +6,8 @@
 ##PANDA
 
 
+##SCIPY
+
 
 ##Matplotlib
 Matplotlib은 python에서 그래프를 그릴때 사용하는 패키지
